@@ -37,7 +37,7 @@ export default function Header({ onMenuClick }: HeaderProps) {
                 <span className="text-white font-bold text-lg">B</span>
               </div>
               <span className="ml-3 text-xl font-semibold text-gray-900 hidden sm:block">
-                VidiCoach Web
+                Vidi Coach
               </span>
             </div>
           </div>

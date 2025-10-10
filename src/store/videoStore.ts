@@ -23,8 +23,8 @@ export const useVideoStore = create<VideoState>()(
           const videos: Video[] = [
             {
               id: '1',
-              title: '无人机基础飞行操作',
-              description: '学习无人机的基本飞行操作和安全注意事项',
+              title: 'Drone Basic Flight Operations',
+              description: 'Learn basic drone flight operations and safety considerations',
               filename: 'drone_basic_flight.mp4',
               originalName: 'drone_basic_flight.mp4',
               mimeType: 'video/mp4',
@@ -34,15 +34,15 @@ export const useVideoStore = create<VideoState>()(
               userId: '1',
               status: 'published',
               category: 'flight-basics',
-              tags: ['基础', '飞行', '安全'],
+              tags: ['basic', 'flight', 'safety'],
               viewCount: 1250,
               createdAt: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000).toISOString(),
               updatedAt: new Date(Date.now() - 1 * 24 * 60 * 60 * 1000).toISOString()
             },
             {
               id: '2',
-              title: '设备维护与保养指南',
-              description: '无人机日常维护和故障排除方法',
+              title: 'Equipment Maintenance & Care Guide',
+              description: 'Daily maintenance and troubleshooting methods for drones',
               filename: 'equipment_maintenance.mp4',
               originalName: 'equipment_maintenance.mp4',
               mimeType: 'video/mp4',
@@ -52,15 +52,15 @@ export const useVideoStore = create<VideoState>()(
               userId: '1',
               status: 'pending',
               category: 'equipment-maintenance',
-              tags: ['维护', '保养', '故障'],
+              tags: ['maintenance', 'care', 'troubleshooting'],
               viewCount: 0,
               createdAt: new Date(Date.now() - 1 * 24 * 60 * 60 * 1000).toISOString(),
               updatedAt: new Date(Date.now() - 1 * 24 * 60 * 60 * 1000).toISOString()
             },
             {
               id: '3',
-              title: '农业植保应用案例',
-              description: '无人机在农业植保中的实际应用案例',
+              title: 'Agricultural Crop Protection Application Cases',
+              description: 'Practical application cases of drones in agricultural crop protection',
               filename: 'agriculture_application.mp4',
               originalName: 'agriculture_application.mp4',
               mimeType: 'video/mp4',
@@ -70,15 +70,15 @@ export const useVideoStore = create<VideoState>()(
               userId: '2',
               status: 'published',
               category: 'industry-applications',
-              tags: ['农业', '植保', '应用'],
+              tags: ['agriculture', 'crop', 'protection'],
               viewCount: 890,
               createdAt: new Date(Date.now() - 3 * 24 * 60 * 60 * 1000).toISOString(),
               updatedAt: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000).toISOString()
             },
             {
               id: '4',
-              title: '安全飞行规范',
-              description: '无人机安全飞行的基本规范和注意事项',
+              title: 'Safety Flight Standards',
+              description: 'Basic standards and precautions for safe drone operations',
               filename: 'safety_procedures.mp4',
               originalName: 'safety_procedures.mp4',
               mimeType: 'video/mp4',
@@ -88,15 +88,15 @@ export const useVideoStore = create<VideoState>()(
               userId: '1',
               status: 'published',
               category: 'safety-procedures',
-              tags: ['安全', '规范', '飞行'],
+              tags: ['safety', 'standards', 'flight'],
               viewCount: 2100,
               createdAt: new Date(Date.now() - 5 * 24 * 60 * 60 * 1000).toISOString(),
               updatedAt: new Date(Date.now() - 4 * 24 * 60 * 60 * 1000).toISOString()
             },
             {
               id: '5',
-              title: '高级飞行技巧',
-              description: '无人机高级飞行技巧和复杂环境操作',
+              title: 'Advanced Flight Techniques',
+              description: 'Advanced drone flight techniques and complex environment operations',
               filename: 'advanced_techniques.mp4',
               originalName: 'advanced_techniques.mp4',
               mimeType: 'video/mp4',
@@ -106,15 +106,15 @@ export const useVideoStore = create<VideoState>()(
               userId: '2',
               status: 'draft',
               category: 'advanced-techniques',
-              tags: ['高级', '技巧', '复杂环境'],
+              tags: ['advanced', 'techniques', 'complex'],
               viewCount: 0,
               createdAt: new Date(Date.now() - 6 * 60 * 60 * 1000).toISOString(),
               updatedAt: new Date(Date.now() - 2 * 60 * 60 * 1000).toISOString()
             },
             {
               id: '6',
-              title: '无人机法规解读',
-              description: '最新无人机相关法规和政策解读',
+              title: 'Drone Regulations Guide',
+              description: 'Latest drone-related regulations and policy interpretation',
               filename: 'regulations_guide.mp4',
               originalName: 'regulations_guide.mp4',
               mimeType: 'video/mp4',
@@ -124,7 +124,7 @@ export const useVideoStore = create<VideoState>()(
               userId: '1',
               status: 'archived',
               category: 'regulations',
-              tags: ['法规', '政策', '解读'],
+              tags: ['regulations', 'policy', 'guide'],
               viewCount: 750,
               createdAt: new Date(Date.now() - 10 * 24 * 60 * 60 * 1000).toISOString(),
               updatedAt: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString()
@@ -190,7 +190,7 @@ export const useVideoStore = create<VideoState>()(
           
           const { videos } = get();
           
-          // 计算统计数据
+          // Calculate statistics
           const pendingPublishCount = videos.filter(v => v.status === 'pending').length;
           const today = new Date();
           today.setHours(0, 0, 0, 0);
@@ -201,7 +201,7 @@ export const useVideoStore = create<VideoState>()(
           const archivedCount = videos.filter(v => v.status === 'archived').length;
           const totalVideoCount = videos.length;
           
-          // 分类统计
+          // Category statistics
           const categoryStats = [
             { category: 'flight-basics' as VideoCategory, count: 0, percentage: 0 },
             { category: 'equipment-maintenance' as VideoCategory, count: 0, percentage: 0 },
@@ -222,7 +222,7 @@ export const useVideoStore = create<VideoState>()(
             stat.percentage = totalVideoCount > 0 ? (stat.count / totalVideoCount) * 100 : 0;
           });
           
-          // 状态统计
+          // Status statistics
           const statusStats = [
             { status: 'draft' as VideoStatus, count: 0, percentage: 0 },
             { status: 'pending' as VideoStatus, count: 0, percentage: 0 },
@@ -241,7 +241,7 @@ export const useVideoStore = create<VideoState>()(
             stat.percentage = totalVideoCount > 0 ? (stat.count / totalVideoCount) * 100 : 0;
           });
           
-          // 最新上传
+          // Recent uploads
           const recentUploads = videos
             .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
             .slice(0, 5)
@@ -251,42 +251,42 @@ export const useVideoStore = create<VideoState>()(
               uploadTime: video.createdAt,
               status: video.status,
               category: video.category,
-              uploader: `用户${video.userId}`
+              uploader: `User${video.userId}`
             }));
           
-          // 操作记录
+          // Operation records
           const recentOperations = [
             {
               id: '1',
               action: 'publish' as const,
-              videoTitle: '无人机基础飞行操作',
-              operator: '管理员',
+              videoTitle: 'Drone Basic Flight Operations',
+              operator: 'Admin',
               timestamp: new Date(Date.now() - 2 * 60 * 60 * 1000).toISOString(),
-              details: '审核通过并发布'
+              details: 'Approved and published'
             },
             {
               id: '2',
               action: 'categorize' as const,
-              videoTitle: '设备维护与保养指南',
-              operator: '管理员',
+              videoTitle: 'Equipment Maintenance & Care Guide',
+              operator: 'Admin',
               timestamp: new Date(Date.now() - 4 * 60 * 60 * 1000).toISOString(),
-              details: '分类为设备维护'
+              details: 'Categorized as equipment maintenance'
             },
             {
               id: '3',
               action: 'archive' as const,
-              videoTitle: '无人机法规解读',
-              operator: '管理员',
+              videoTitle: 'Drone Regulations Guide',
+              operator: 'Admin',
               timestamp: new Date(Date.now() - 1 * 24 * 60 * 60 * 1000).toISOString(),
-              details: '内容过时，已下架'
+              details: 'Content outdated, archived'
             },
             {
               id: '4',
               action: 'update' as const,
-              videoTitle: '安全飞行规范',
-              operator: '管理员',
+              videoTitle: 'Safety Flight Standards',
+              operator: 'Admin',
               timestamp: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000).toISOString(),
-              details: '更新安全标准'
+              details: 'Updated safety standards'
             }
           ];
           

@@ -1,9 +1,11 @@
 import { useAuthStore } from '@/store/authStore'
 import { useRouter } from 'next/navigation'
 import { useEffect } from 'react'
+import { useAuthSync } from './useAuthSync'
 
 export function useAuth() {
   const router = useRouter()
+  const { session, status } = useAuthSync()
   const {
     user,
     isAuthenticated,
@@ -17,19 +19,20 @@ export function useAuth() {
 
   // Auto redirect if not authenticated
   useEffect(() => {
-    if (!loading && !isAuthenticated) {
+    if (status === 'unauthenticated' && !loading) {
       router.push('/login')
     }
-  }, [isAuthenticated, loading, router])
+  }, [status, loading, router])
 
   return {
     user,
     isAuthenticated,
-    loading,
+    loading: loading || status === 'loading',
     error,
     login,
     logout,
     register,
-    updateProfile
+    updateProfile,
+    session
   }
 }

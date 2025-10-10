@@ -46,22 +46,22 @@ export default function VideoListPage() {
 
   const getStatusText = (status: string) => {
     switch (status) {
-      case 'published': return '已发布'
-      case 'pending': return '待审核'
-      case 'draft': return '草稿'
-      case 'archived': return '已下架'
+      case 'published': return 'Published'
+      case 'pending': return 'Pending Review'
+      case 'draft': return 'Draft'
+      case 'archived': return 'Archived'
       default: return status
     }
   }
 
   const getCategoryText = (category: string) => {
     const categoryMap: Record<string, string> = {
-      'flight-basics': '飞行基础',
-      'equipment-maintenance': '设备维护',
-      'industry-applications': '行业应用',
-      'safety-procedures': '安全程序',
-      'advanced-techniques': '高级技巧',
-      'regulations': '法规标准'
+      'flight-basics': 'Flight Basics',
+      'equipment-maintenance': 'Equipment Maintenance',
+      'industry-applications': 'Industry Applications',
+      'safety-procedures': 'Safety Procedures',
+      'advanced-techniques': 'Advanced Techniques',
+      'regulations': 'Regulations'
     }
     return categoryMap[category] || category
   }
@@ -72,7 +72,7 @@ export default function VideoListPage() {
         <div className="flex items-center justify-center py-20">
           <div className="text-center">
             <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-blue-600 mx-auto"></div>
-            <p className="mt-4 text-gray-600">加载视频中...</p>
+            <p className="mt-4 text-gray-600">Loading videos...</p>
           </div>
         </div>
       </div>
@@ -83,7 +83,7 @@ export default function VideoListPage() {
     return (
       <div className="container mx-auto px-4 py-8">
         <div className="bg-red-50 border border-red-200 rounded-lg p-6">
-          <h3 className="text-lg font-medium text-red-800 mb-2">加载失败</h3>
+          <h3 className="text-lg font-medium text-red-800 mb-2">Loading Failed</h3>
           <p className="text-red-600">{error}</p>
         </div>
       </div>
@@ -95,8 +95,8 @@ export default function VideoListPage() {
       {/* 页面标题和操作 */}
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8 gap-4">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900">视频列表</h1>
-          <p className="text-gray-600 mt-1">管理您的培训视频内容</p>
+          <h1 className="text-3xl font-bold text-gray-900">Video List</h1>
+          <p className="text-gray-600 mt-1">Manage your training video content</p>
         </div>
         <a
           href="/videos/upload"
@@ -105,7 +105,7 @@ export default function VideoListPage() {
           <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
           </svg>
-          上传视频
+          Upload Video
         </a>
       </div>
 
@@ -122,7 +122,7 @@ export default function VideoListPage() {
               </div>
               <input
                 type="text"
-                placeholder="搜索视频标题或描述..."
+                placeholder="Search video title or description..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 className="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
@@ -133,11 +133,11 @@ export default function VideoListPage() {
           {/* 状态过滤 */}
           <div className="flex gap-2">
             {[
-              { key: 'all', label: '全部' },
-              { key: 'published', label: '已发布' },
-              { key: 'pending', label: '待审核' },
-              { key: 'draft', label: '草稿' },
-              { key: 'archived', label: '已下架' }
+              { key: 'all', label: 'All' },
+              { key: 'published', label: 'Published' },
+              { key: 'pending', label: 'Pending Review' },
+              { key: 'draft', label: 'Draft' },
+              { key: 'archived', label: 'Archived' }
             ].map(({ key, label }) => (
               <button
                 key={key}
@@ -164,14 +164,14 @@ export default function VideoListPage() {
             </svg>
           </div>
           <p className="text-gray-500 text-lg mb-2">
-            {searchTerm || filter !== 'all' ? '没有找到匹配的视频' : '暂无视频'}
+            {searchTerm || filter !== 'all' ? 'No matching videos found' : 'No videos available'}
           </p>
           {!searchTerm && filter === 'all' && (
             <a
               href="/videos/upload"
               className="text-blue-600 hover:text-blue-700 inline-block"
             >
-              上传您的第一个视频
+              Upload your first video
             </a>
           )}
         </div>
@@ -188,7 +188,7 @@ export default function VideoListPage() {
                     <svg className="mx-auto h-12 w-12 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
                     </svg>
-                    <p className="text-sm">暂无缩略图</p>
+                    <p className="text-sm">No thumbnail available</p>
                   </div>
                 )}
               </div>
@@ -208,34 +208,34 @@ export default function VideoListPage() {
 
                 <div className="space-y-2 text-sm text-gray-600 mb-4">
                   <div className="flex justify-between">
-                    <span>分类:</span>
+                    <span>Category:</span>
                     <span>{getCategoryText(video.category)}</span>
                   </div>
                   <div className="flex justify-between">
-                    <span>时长:</span>
+                    <span>Duration:</span>
                     <span>{formatDuration(video.duration)}</span>
                   </div>
                   <div className="flex justify-between">
-                    <span>大小:</span>
+                    <span>Size:</span>
                     <span>{formatFileSize(video.size)}</span>
                   </div>
                   <div className="flex justify-between">
-                    <span>播放量:</span>
+                    <span>Views:</span>
                     <span>{video.viewCount}</span>
                   </div>
                   <div className="flex justify-between">
-                    <span>上传时间:</span>
-                    <span>{new Date(video.createdAt).toLocaleDateString('zh-CN')}</span>
+                    <span>Upload Time:</span>
+                    <span>{new Date(video.createdAt).toLocaleDateString('en-US')}</span>
                   </div>
                 </div>
 
                 {/* 操作按钮 */}
                 <div className="flex space-x-2">
                   <button className="flex-1 bg-blue-600 text-white px-3 py-2 rounded text-sm hover:bg-blue-700 transition-colors">
-                    查看
+                    View
                   </button>
                   <button className="flex-1 bg-gray-600 text-white px-3 py-2 rounded text-sm hover:bg-gray-700 transition-colors">
-                    编辑
+                    Edit
                   </button>
                 </div>
               </div>
@@ -247,7 +247,7 @@ export default function VideoListPage() {
       {/* 统计信息 */}
       {filteredVideos.length > 0 && (
         <div className="mt-8 text-center text-sm text-gray-500">
-          显示 {filteredVideos.length} 个视频，共 {videos.length} 个
+          Showing {filteredVideos.length} of {videos.length} videos
         </div>
       )}
     </div>

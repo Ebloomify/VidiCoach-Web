@@ -1,27 +1,22 @@
 'use client'
 
-import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import Image from 'next/image'
+import { Card, Typography } from 'antd'
+import LoginForm from '@/components/features/auth/LoginForm'
+import { GoogleLoginButton } from '@/components/ui/GoogleLoginButton'
+
+const { Title, Paragraph } = Typography
 
 export default function LoginPage() {
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const [loading, setLoading] = useState(false)
   const router = useRouter()
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setLoading(true)
-    
-    // TODO: Implement login logic
-    console.log('Login attempt:', { email, password })
-    
-    // Simulate API call
-    setTimeout(() => {
-      setLoading(false)
-      router.push('/dashboard')
-    }, 1000)
+  const handleForgotPassword = () => {
+    router.push('/forgot-password')
+  }
+
+  const handleLoginSuccess = () => {
+    router.push('/dashboard')
   }
 
   return (
@@ -36,146 +31,103 @@ export default function LoginPage() {
             className="object-cover"
             priority
           />
-          {/* 渐变遮罩，确保文字可读性 */}
+          {/* 渐变遮罩 */}
           <div className="absolute inset-0 bg-gradient-to-r from-blue-900/60 to-transparent"></div>
         </div>
         
-        {/* 左侧内容覆盖层 */}
+        {/* 左侧内容 */}
         <div className="relative z-10 flex flex-col justify-center px-12 text-white">
           <div className="max-w-md">
             <h1 className="text-4xl font-bold mb-6">
-              VidiCoach Web
+              Vidi Coach
             </h1>
             <p className="text-xl mb-8 text-blue-100">
-              Professional drone video management platform for modern agriculture
+              专业无人机视频管理平台
             </p>
             <div className="space-y-4">
               <div className="flex items-center">
                 <div className="w-2 h-2 bg-blue-400 rounded-full mr-3"></div>
-                <span>Advanced video analytics</span>
+                <span>智能视频分析</span>
               </div>
               <div className="flex items-center">
                 <div className="w-2 h-2 bg-blue-400 rounded-full mr-3"></div>
-                <span>Real-time monitoring</span>
+                <span>实时监控</span>
               </div>
               <div className="flex items-center">
                 <div className="w-2 h-2 bg-blue-400 rounded-full mr-3"></div>
-                <span>Cloud storage & management</span>
+                <span>云存储管理</span>
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      {/* 右侧操作区 - 登录表单 */}
-      <div className="flex-1 flex items-center justify-center bg-white px-4 sm:px-6 lg:px-8">
-        <div className="max-w-md w-full space-y-8">
-          {/* Logo - 在移动端显示 */}
-          <div className="lg:hidden text-center">
-            <div className="flex justify-center">
-              <div className="w-12 h-12 bg-blue-600 rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-2xl">B</span>
+      {/* 右侧登录区 */}
+      <div className="flex-1 flex items-center justify-center bg-gradient-to-br from-gray-50 to-blue-50 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-md w-full">
+          {/* Logo - 移动端显示 */}
+          <div className="lg:hidden text-center mb-8">
+            <div className="flex justify-center mb-4">
+              <div className="w-16 h-16 bg-blue-600 rounded-xl flex items-center justify-center shadow-lg">
+                <span className="text-white font-bold text-3xl">B</span>
               </div>
             </div>
-            <h2 className="mt-4 text-2xl font-bold text-gray-900">
-              VidiCoach Web
+            <h2 className="text-2xl font-bold text-gray-900">
+              Vidi Coach
             </h2>
           </div>
 
-          <div className="text-center">
-            <h2 className="text-3xl font-bold text-gray-900">
-              Welcome back
-            </h2>
-            <p className="mt-2 text-sm text-gray-600">
-              Sign in to your account
-            </p>
+          {/* 欢迎信息 */}
+          <div className="text-center mb-8">
+            <Title level={2} className="text-gray-900 mb-2">
+              欢迎回来
+            </Title>
+            <Paragraph className="text-gray-600 text-base">
+              登录您的账户继续使用
+            </Paragraph>
           </div>
 
-          <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
-            <div className="space-y-4">
-              <div>
-                <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
-                  Email address
-                </label>
-                <input
-                  id="email"
-                  name="email"
-                  type="email"
-                  autoComplete="email"
-                  required
-                  className="appearance-none relative block w-full px-3 py-3 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-                  placeholder="Enter your email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                />
+          {/* 登录卡片 */}
+          <Card
+            className="shadow-xl border-0 rounded-2xl"
+            bodyStyle={{ padding: '32px' }}
+          >
+            {/* Google登录 */}
+            <div className="mb-6">
+              <GoogleLoginButton />
+            </div>
+
+            {/* 分割线 */}
+            <div className="relative mb-6">
+              <div className="absolute inset-0 flex items-center">
+                <div className="w-full border-t border-gray-300" />
               </div>
-              <div>
-                <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-1">
-                  Password
-                </label>
-                <input
-                  id="password"
-                  name="password"
-                  type="password"
-                  autoComplete="current-password"
-                  required
-                  className="appearance-none relative block w-full px-3 py-3 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-                  placeholder="Enter your password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                />
+              <div className="relative flex justify-center text-sm">
+                <span className="px-4 bg-white text-gray-500 font-medium">
+                  或使用邮箱登录
+                </span>
               </div>
             </div>
 
-            <div className="flex items-center justify-between">
-              <div className="flex items-center">
-                <input
-                  id="remember-me"
-                  name="remember-me"
-                  type="checkbox"
-                  className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
-                />
-                <label htmlFor="remember-me" className="ml-2 block text-sm text-gray-900">
-                  Remember me
-                </label>
-              </div>
+            {/* 登录表单 */}
+            <LoginForm
+              onForgotPassword={handleForgotPassword}
+              onSuccess={handleLoginSuccess}
+            />
+          </Card>
 
-              <div className="text-sm">
-                <a href="#" className="font-medium text-blue-600 hover:text-blue-500">
-                  Forgot your password?
-                </a>
-              </div>
-            </div>
-
-            <div>
-              <button
-                type="submit"
-                disabled={loading}
-                className="group relative w-full flex justify-center py-3 px-4 border border-transparent text-sm font-medium rounded-lg text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
-              >
-                {loading ? (
-                  <div className="flex items-center">
-                    <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
-                    Signing in...
-                  </div>
-                ) : (
-                  'Sign in'
-                )}
-              </button>
-            </div>
-
-            <div className="text-center">
-              <span className="text-sm text-gray-600">
-                Don't have an account?{' '}
-              </span>
+          {/* 注册链接 */}
+          <div className="mt-6 text-center">
+            <Paragraph className="text-gray-600">
+              还没有账户？{' '}
               <a
                 href="/register"
-                className="font-medium text-blue-600 hover:text-blue-500"
+                className="text-blue-600 hover:text-blue-500 font-medium transition-colors"
               >
-                Sign up
+                立即注册
               </a>
-            </div>
-          </form>
+            </Paragraph>
+          </div>
         </div>
       </div>
     </div>

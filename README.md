@@ -1,116 +1,160 @@
-# VidiCoach Web
+# vidi-coach-web
 
-A modern drone video management platform built with Next.js 14, TypeScript, and Tailwind CSS.
+一个基于 Next.js 14+ 的现代化无人机培训视频管理平台，支持用户认证、视频管理、文件上传等功能。
 
-## Features
+## 📁 项目结构
 
-- 🎥 Video upload and management
-- 🔐 User authentication
-- 📱 Responsive design
-- 🎨 Modern UI with Tailwind CSS
-- 📊 Dashboard with statistics
-- 🔄 Real-time upload progress
-
-## Tech Stack
-
-- **Frontend**: Next.js 14 (App Router), TypeScript, Tailwind CSS
-- **State Management**: Zustand
-- **Authentication**: NextAuth.js
-- **UI Components**: Ant Design
-- **Code Quality**: ESLint, Prettier
-
-## Getting Started
-
-### Prerequisites
-
-- Node.js 18+ 
-- npm or yarn
-
-### Installation
-
-1. Clone the repository
-```bash
-git clone <repository-url>
-cd VidiCoach-Web
+```
+Vidi-Coach-Web/
+├── 📁 docs/                    # 项目文档
+│   ├── DATABASE_SETUP_GUIDE.md # 数据库设置指南
+│   ├── DOCKER_SETUP_GUIDE.md   # Docker 设置指南
+│   ├── EMAIL_SETUP_GUIDE.md    # 邮件服务设置指南
+│   ├── ENV_SETUP_GUIDE.md      # 环境变量设置指南
+│   ├── FORGOT_PASSWORD_GUIDE.md # 忘记密码功能指南
+│   ├── GOOGLE_OAUTH_SETUP.md   # Google OAuth 设置指南
+│   ├── LOGIN_MOCK_MODE_GUIDE.md # 登录模拟模式指南
+│   └── README.md               # 详细文档
+├── 📁 scripts/                 # 脚本文件
+│   ├── docker-compose.yml      # Docker Compose 配置
+│   ├── init-db.sql            # 数据库初始化脚本
+│   ├── setup-email.bat        # 邮件设置脚本 (Windows)
+│   ├── start-docker.bat       # Docker 启动脚本 (Windows)
+│   └── start-docker.sh        # Docker 启动脚本 (Linux/Mac)
+├── 📁 src/                     # 源代码
+│   ├── 📁 app/                 # Next.js App Router
+│   │   ├── 📁 api/             # API 路由
+│   │   ├── 📁 dashboard/       # 仪表板页面
+│   │   ├── 📁 login/           # 登录页面
+│   │   ├── 📁 register/        # 注册页面
+│   │   ├── 📁 forgot-password/ # 忘记密码页面
+│   │   ├── 📁 videos/          # 视频相关页面
+│   │   ├── globals.css         # 全局样式
+│   │   ├── layout.tsx          # 根布局
+│   │   └── page.tsx            # 首页
+│   ├── 📁 components/          # 组件库
+│   │   ├── 📁 features/        # 功能组件
+│   │   ├── 📁 layout/          # 布局组件
+│   │   ├── 📁 providers/       # 上下文提供者
+│   │   └── 📁 ui/              # 基础UI组件
+│   ├── 📁 hooks/               # 自定义Hooks
+│   ├── 📁 lib/                 # 工具库
+│   ├── 📁 store/               # Zustand状态管理
+│   └── 📁 types/               # TypeScript类型定义
+├── 📁 prisma/                  # 数据库模式
+├── 📁 public/                  # 静态资源
+├── .env.local                  # 环境变量 (需要创建)
+├── env.example                 # 环境变量示例
+├── package.json                # 项目依赖
+├── tailwind.config.js          # Tailwind CSS 配置
+├── tsconfig.json               # TypeScript 配置
+└── README.md                   # 项目说明
 ```
 
-2. Install dependencies
+## 🚀 快速开始
+
+### 1. 安装依赖
 ```bash
 npm install
 ```
 
-3. Set up environment variables
+### 2. 环境配置
 ```bash
+# 复制环境变量示例文件
 cp env.example .env.local
-# Edit .env.local with your configuration
+
+# 编辑环境变量
+# 参考 docs/ENV_SETUP_GUIDE.md
 ```
 
-4. Run the development server
+### 3. 数据库设置
+```bash
+# 使用 Docker (推荐)
+./scripts/start-docker.bat  # Windows
+./scripts/start-docker.sh   # Linux/Mac
+
+# 或者参考 docs/DATABASE_SETUP_GUIDE.md
+```
+
+### 4. 启动开发服务器
 ```bash
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+访问 [http://localhost:3000](http://localhost:3000) 查看应用。
 
-## Project Structure
+## 📚 功能特性
 
-```
-src/
-├── app/                    # Next.js App Router
-│   ├── dashboard/         # Dashboard page
-│   ├── videos/            # Video pages
-│   ├── login/             # Login page
-│   ├── register/          # Register page
-│   ├── globals.css        # Global styles
-│   ├── layout.tsx         # Root layout
-│   └── page.tsx           # Home page
-├── components/            # React components
-│   ├── ui/               # Base UI components
-│   ├── features/         # Feature components
-│   └── layout/           # Layout components
-├── hooks/                # Custom hooks
-├── lib/                  # Utility functions
-├── store/                # Zustand stores
-├── types/                # TypeScript types
-└── constants/            # Constants
-```
+- ✅ **用户认证**: 邮箱注册/登录、Google OAuth
+- ✅ **密码重置**: 邮箱验证码重置密码
+- ✅ **响应式设计**: 支持多设备适配
+- ✅ **状态管理**: Zustand 全局状态管理
+- ✅ **类型安全**: 完整的 TypeScript 支持
+- ✅ **数据库**: PostgreSQL + Prisma ORM
+- ✅ **邮件服务**: 支持 Gmail、QQ、163 等邮箱
+- ✅ **Docker 支持**: 一键启动数据库
 
-## Available Scripts
+## 🛠️ 技术栈
 
-- `npm run dev` - Start development server
-- `npm run build` - Build for production
-- `npm run start` - Start production server
-- `npm run lint` - Run ESLint
-- `npm run lint:fix` - Fix ESLint errors
-- `npm run type-check` - Run TypeScript type checking
-- `npm run format` - Format code with Prettier
-- `npm run format:check` - Check code formatting
+- **前端**: Next.js 14+, React, TypeScript
+- **样式**: Tailwind CSS, Ant Design
+- **状态管理**: Zustand
+- **认证**: NextAuth.js
+- **数据库**: PostgreSQL, Prisma
+- **邮件**: Nodemailer
+- **容器化**: Docker, Docker Compose
 
-## Development Guidelines
+## 📖 文档
 
-### Component Structure
-- Use functional components with TypeScript
-- Follow the container/view pattern for complex components
-- Keep components small and focused on single responsibility
+- [环境变量设置指南](docs/ENV_SETUP_GUIDE.md)
+- [数据库设置指南](docs/DATABASE_SETUP_GUIDE.md)
+- [Docker 设置指南](docs/DOCKER_SETUP_GUIDE.md)
+- [邮件服务设置指南](docs/EMAIL_SETUP_GUIDE.md)
+- [忘记密码功能指南](docs/FORGOT_PASSWORD_GUIDE.md)
+- [Google OAuth 设置指南](docs/GOOGLE_OAUTH_SETUP.md)
 
-### State Management
-- Use Zustand for global state
-- Keep local state in components when possible
-- Use custom hooks for shared logic
+## 🔧 开发工具
 
-### Styling
-- Use Tailwind CSS for styling
-- Follow mobile-first responsive design
-- Use consistent spacing and color scheme
+### 脚本文件 (scripts/)
+- `start-docker.bat/sh` - 快速启动 Docker 数据库
+- `setup-email.bat` - 快速配置邮件服务
+- `docker-compose.yml` - Docker 数据库配置
+- `init-db.sql` - 数据库初始化脚本
 
-## Contributing
+### 环境变量 (env.example)
+包含所有必要的环境变量配置示例。
 
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Run tests and linting
-5. Submit a pull request
+## 📝 开发说明
 
-## License
+### 文件组织原则
+1. **docs/**: 所有文档文件集中管理
+2. **scripts/**: 所有脚本文件集中管理
+3. **src/**: 源代码按功能模块组织
+4. **根目录**: 只保留核心配置文件
 
-This project is licensed under the MIT License.
+### 组件设计
+- 遵循 Container/View 模式
+- 状态组件处理业务逻辑
+- 视图组件负责展示
+- 完整的 TypeScript 类型定义
+
+### 状态管理
+- 使用 Zustand 进行全局状态管理
+- 按功能模块分割 Store
+- 支持开发工具调试
+
+## 🤝 贡献指南
+
+1. Fork 项目
+2. 创建功能分支
+3. 提交更改
+4. 推送到分支
+5. 创建 Pull Request
+
+## 📄 许可证
+
+MIT License
+
+---
+
+**注意**: 这是一个开发中的项目，部分功能可能仍在完善中。

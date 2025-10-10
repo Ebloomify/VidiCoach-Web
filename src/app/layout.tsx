@@ -2,11 +2,12 @@ import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
 import { ConditionalLayout } from '@/components/layout'
+import { SessionProvider } from '@/components/providers/SessionProvider'
 
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'VidiCoach Web',
+  title: 'Vidi Coach Web',
   description: 'Drone video management platform',
 }
 
@@ -18,9 +19,11 @@ export default function RootLayout({
   return (
     <html lang="zh-CN">
       <body className={inter.className}>
-        <ConditionalLayout>
-          {children}
-        </ConditionalLayout>
+        <SessionProvider>
+          <ConditionalLayout>
+            {children}
+          </ConditionalLayout>
+        </SessionProvider>
       </body>
     </html>
   )

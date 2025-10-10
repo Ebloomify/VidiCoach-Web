@@ -9,20 +9,20 @@ interface ActivitySectionProps {
 
 // 分类名称映射
 const categoryNames: Record<VideoCategory, string> = {
-  'flight-basics': '飞行基础',
-  'equipment-maintenance': '设备维护',
-  'industry-applications': '行业应用',
-  'safety-procedures': '安全程序',
-  'advanced-techniques': '高级技巧',
-  'regulations': '法规标准'
+  'flight-basics': 'Flight Basics',
+  'equipment-maintenance': 'Equipment Maintenance',
+  'industry-applications': 'Industry Applications',
+  'safety-procedures': 'Safety Procedures',
+  'advanced-techniques': 'Advanced Techniques',
+  'regulations': 'Regulations'
 };
 
 // 状态名称映射
 const statusNames: Record<VideoStatus, string> = {
-  'draft': '草稿',
-  'pending': '待上架',
-  'published': '已上架',
-  'archived': '已下架'
+  'draft': 'Draft',
+  'pending': 'Pending',
+  'published': 'Published',
+  'archived': 'Archived'
 };
 
 // 状态颜色映射
@@ -59,10 +59,10 @@ const actionIcons: Record<string, React.ReactNode> = {
 
 // 操作名称映射
 const actionNames: Record<string, string> = {
-  publish: '发布',
-  archive: '下架',
-  categorize: '分类',
-  update: '更新'
+  publish: 'Published',
+  archive: 'Archived',
+  categorize: 'Categorized',
+  update: 'Updated'
 };
 
 // 操作颜色映射
@@ -80,11 +80,11 @@ const formatTime = (timestamp: string) => {
   const diffInMinutes = Math.floor((now.getTime() - date.getTime()) / (1000 * 60));
   
   if (diffInMinutes < 60) {
-    return `${diffInMinutes}分钟前`;
+    return `${diffInMinutes}m ago`;
   } else if (diffInMinutes < 1440) {
-    return `${Math.floor(diffInMinutes / 60)}小时前`;
+    return `${Math.floor(diffInMinutes / 60)}h ago`;
   } else {
-    return `${Math.floor(diffInMinutes / 1440)}天前`;
+    return `${Math.floor(diffInMinutes / 1440)}d ago`;
   }
 };
 
@@ -93,9 +93,9 @@ const RecentUploadsList: React.FC<{ uploads: DashboardStats['recentUploads'] }> 
   return (
     <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
       <div className="flex items-center justify-between mb-4">
-        <h3 className="text-lg font-semibold text-gray-900">最新上传</h3>
+        <h3 className="text-lg font-semibold text-gray-900">Recent Uploads</h3>
         <a href="/videos/list" className="text-sm text-blue-600 hover:text-blue-800">
-          查看全部
+          View All
         </a>
       </div>
       
@@ -131,9 +131,9 @@ const OperationLogsList: React.FC<{ operations: DashboardStats['recentOperations
   return (
     <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
       <div className="flex items-center justify-between mb-4">
-        <h3 className="text-lg font-semibold text-gray-900">操作记录</h3>
+        <h3 className="text-lg font-semibold text-gray-900">Operation Records</h3>
         <a href="/admin/logs" className="text-sm text-blue-600 hover:text-blue-800">
-          查看全部
+          View All
         </a>
       </div>
       
@@ -149,7 +149,7 @@ const OperationLogsList: React.FC<{ operations: DashboardStats['recentOperations
                   {operation.operator}
                 </span>
                 <span className="text-sm text-gray-600">
-                  {actionNames[operation.action]}了
+                  {actionNames[operation.action]}
                 </span>
                 <span className="text-sm font-medium text-gray-900 truncate">
                   {operation.videoTitle}

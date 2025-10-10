@@ -28,7 +28,7 @@ export default function ProfilePage() {
       await updateProfile(formData);
       setIsEditing(false);
     } catch (error) {
-      console.error('更新失败:', error);
+      console.error('Update failed:', error);
     }
   };
 
@@ -51,8 +51,8 @@ export default function ProfilePage() {
     return (
       <div className="container mx-auto px-4 py-8">
         <div className="bg-red-50 border border-red-200 rounded-lg p-6">
-          <h3 className="text-lg font-medium text-red-800 mb-2">未登录</h3>
-          <p className="text-red-600">请先登录以查看个人中心</p>
+          <h3 className="text-lg font-medium text-red-800 mb-2">Not Logged In</h3>
+          <p className="text-red-600">Please login to view your profile</p>
         </div>
       </div>
     );
@@ -63,8 +63,8 @@ export default function ProfilePage() {
       <div className="max-w-4xl mx-auto">
         {/* 页面标题 */}
         <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">个人中心</h1>
-          <p className="text-gray-600">管理您的个人信息和视频内容</p>
+          <h1 className="text-3xl font-bold text-gray-900 mb-2">Profile</h1>
+          <p className="text-gray-600">Manage your personal information and video content</p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -72,12 +72,12 @@ export default function ProfilePage() {
           <div className="lg:col-span-2">
             <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
               <div className="flex items-center justify-between mb-6">
-                <h2 className="text-xl font-semibold text-gray-900">个人信息</h2>
+                <h2 className="text-xl font-semibold text-gray-900">Personal Information</h2>
                 <button
                   onClick={() => setIsEditing(!isEditing)}
                   className="text-blue-600 hover:text-blue-800 text-sm font-medium"
                 >
-                  {isEditing ? '取消' : '编辑'}
+                  {isEditing ? 'Cancel' : 'Edit'}
                 </button>
               </div>
 
@@ -85,7 +85,7 @@ export default function ProfilePage() {
                 <form onSubmit={handleSubmit} className="space-y-4">
                   <div>
                     <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
-                      姓名
+                      Name
                     </label>
                     <input
                       type="text"
@@ -99,7 +99,7 @@ export default function ProfilePage() {
                   </div>
                   <div>
                     <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
-                      邮箱
+                      Email
                     </label>
                     <input
                       type="email"
@@ -116,14 +116,14 @@ export default function ProfilePage() {
                       type="submit"
                       className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors"
                     >
-                      保存
+                      Save
                     </button>
                     <button
                       type="button"
                       onClick={() => setIsEditing(false)}
                       className="bg-gray-300 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-400 transition-colors"
                     >
-                      取消
+                      Cancel
                     </button>
                   </div>
                 </form>
@@ -143,15 +143,15 @@ export default function ProfilePage() {
                   <div className="pt-4 border-t border-gray-200">
                     <dl className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div>
-                        <dt className="text-sm font-medium text-gray-500">注册时间</dt>
+                        <dt className="text-sm font-medium text-gray-500">Registration Date</dt>
                         <dd className="text-sm text-gray-900">
-                          {new Date(user.createdAt).toLocaleDateString('zh-CN')}
+                          {new Date(user.createdAt).toLocaleDateString('en-US')}
                         </dd>
                       </div>
                       <div>
-                        <dt className="text-sm font-medium text-gray-500">最后更新</dt>
+                        <dt className="text-sm font-medium text-gray-500">Last Updated</dt>
                         <dd className="text-sm text-gray-900">
-                          {new Date(user.updatedAt).toLocaleDateString('zh-CN')}
+                          {new Date(user.updatedAt).toLocaleDateString('en-US')}
                         </dd>
                       </div>
                     </dl>
@@ -165,22 +165,22 @@ export default function ProfilePage() {
           <div className="space-y-6">
             {/* 视频统计 */}
             <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-              <h3 className="text-lg font-semibold text-gray-900 mb-4">视频统计</h3>
+              <h3 className="text-lg font-semibold text-gray-900 mb-4">Video Statistics</h3>
               <div className="space-y-4">
                 <div className="flex items-center justify-between">
-                  <span className="text-sm text-gray-600">总视频数</span>
+                  <span className="text-sm text-gray-600">Total Videos</span>
                   <span className="text-lg font-semibold text-gray-900">{userStats.totalVideos}</span>
                 </div>
                 <div className="flex items-center justify-between">
-                  <span className="text-sm text-gray-600">已发布</span>
+                  <span className="text-sm text-gray-600">Published</span>
                   <span className="text-lg font-semibold text-green-600">{userStats.publishedVideos}</span>
                 </div>
                 <div className="flex items-center justify-between">
-                  <span className="text-sm text-gray-600">待审核</span>
+                  <span className="text-sm text-gray-600">Pending Review</span>
                   <span className="text-lg font-semibold text-yellow-600">{userStats.pendingVideos}</span>
                 </div>
                 <div className="flex items-center justify-between">
-                  <span className="text-sm text-gray-600">总播放量</span>
+                  <span className="text-sm text-gray-600">Total Views</span>
                   <span className="text-lg font-semibold text-blue-600">{userStats.totalViews}</span>
                 </div>
               </div>
@@ -188,7 +188,7 @@ export default function ProfilePage() {
 
             {/* 快速操作 */}
             <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-              <h3 className="text-lg font-semibold text-gray-900 mb-4">快速操作</h3>
+              <h3 className="text-lg font-semibold text-gray-900 mb-4">Quick Actions</h3>
               <div className="space-y-3">
                 <a
                   href="/videos/upload"
@@ -197,7 +197,7 @@ export default function ProfilePage() {
                   <svg className="w-5 h-5 mr-3 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
                   </svg>
-                  上传新视频
+                  Upload New Video
                 </a>
                 <a
                   href="/videos/list"
@@ -206,7 +206,7 @@ export default function ProfilePage() {
                   <svg className="w-5 h-5 mr-3 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
                   </svg>
-                  我的视频
+                  My Videos
                 </a>
                 <a
                   href="/videos?status=pending"
@@ -215,7 +215,7 @@ export default function ProfilePage() {
                   <svg className="w-5 h-5 mr-3 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
-                  待审核视频
+                  Pending Review Videos
                 </a>
               </div>
             </div>

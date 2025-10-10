@@ -3,6 +3,7 @@ export interface User {
   id: string
   name: string
   email: string
+  image?: string
   avatar?: string
   createdAt: string
   updatedAt: string
@@ -143,7 +144,7 @@ export interface AuthState {
   loading: boolean
   error: string | null
   login: (credentials: LoginCredentials) => Promise<void>
-  logout: () => void
+  logout: () => Promise<void>
   register: (userData: RegisterData) => Promise<void>
   updateProfile: (updates: Partial<User>) => Promise<void>
   setUser: (user: User | null) => void

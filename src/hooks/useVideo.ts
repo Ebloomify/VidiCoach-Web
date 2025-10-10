@@ -19,7 +19,7 @@ export function useVideo() {
   }, [getVideo])
 
   const handleDeleteVideo = useCallback(async (id: string) => {
-    if (confirm('确定要删除这个视频吗？')) {
+    if (confirm('Are you sure you want to delete this video?')) {
       await deleteVideo(id)
     }
   }, [deleteVideo])
