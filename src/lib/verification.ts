@@ -96,11 +96,11 @@ export function verifyCode(email: string, code: string): {
  */
 function cleanExpiredCodes(): void {
   const now = Date.now()
-  for (const [email, data] of verificationCodes.entries()) {
+  verificationCodes.forEach((data, email) => {
     if (now > data.expiresAt) {
       verificationCodes.delete(email)
     }
-  }
+  })
 }
 
 /**
