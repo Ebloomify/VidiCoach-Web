@@ -71,6 +71,9 @@ Vidi-Coach-Web/
 │   ├── FORGOT_PASSWORD_GUIDE.md # 忘记密码功能指南
 │   ├── GOOGLE_OAUTH_SETUP.md   # Google OAuth 设置指南
 │   ├── LOGIN_MOCK_MODE_GUIDE.md # 登录模拟模式指南
+│   ├── FFMPEG_SETUP_GUIDE.md   # FFmpeg 安装指南
+│   ├── S3_STORAGE_QUICKSTART.md # S3 云存储配置指南
+│   ├── VIDEO_PROCESSING_DEPLOYMENT_GUIDE.md # 视频处理部署指南
 │   └── README.md               # 详细文档
 ├── 📁 scripts/                 # 脚本文件
 │   ├── docker-compose.yml      # Docker Compose 配置

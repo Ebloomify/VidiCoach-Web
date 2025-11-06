@@ -44,3 +44,16 @@ next-env.d.ts
 
 # OS
 Thumbs.db
+
+# Uploads
+/uploads/
+*.mp4
+*.mov
+*.avi
+*.webm
+*.m3u8
+*.ts
+
+# Prisma
+prisma/*.db
+prisma/*.db-journal
