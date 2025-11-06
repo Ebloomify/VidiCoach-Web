@@ -33,6 +33,73 @@ export interface Video {
 // Video status for training system
 export type VideoStatus = 'draft' | 'pending' | 'published' | 'archived'
 
+// Video processing status (for upload and processing pipeline)
+export type VideoProcessStatus = 'UPLOADING' | 'UPLOADED' | 'PROCESSING' | 'READY' | 'FAILED'
+
+// Video resolution types
+export type VideoResolution = 'RES_360P' | 'RES_480P' | 'RES_720P' | 'RES_1080P' | 'RES_2K' | 'RES_4K'
+
+// Video upload and processing types
+export interface VideoUploadRecord {
+  id: string
+  userId: string
+  title: string
+  description?: string
+  originalName: string
+  filename: string
+  mimeType: string
+  fileSize: number
+  duration?: number
+  status: VideoProcessStatus
+  processError?: string
+  processAttempts: number
+  uploadPath?: string
+  s3Key?: string
+  s3Bucket?: string
+  hlsPlaylistUrl?: string
+  dashManifestUrl?: string
+  thumbnailUrl?: string
+  versions: VideoVersion[]
+  tags: string[]
+  category?: string
+  viewCount: number
+  createdAt: string
+  updatedAt: string
+  processStartedAt?: string
+  processCompletedAt?: string
+}
+
+export interface VideoVersion {
+  id: string
+  videoId: string
+  resolution: VideoResolution
+  bitrate: number
+  fileSize: number
+  s3Key: string
+  url: string
+  createdAt: string
+}
+
+export interface VideoUploadSession {
+  id: string
+  userId: string
+  filename: string
+  fileSize: number
+  mimeType: string
+  totalChunks: number
+  uploadedChunks: number[]
+  title: string
+  description?: string
+  category?: string
+  tags: string[]
+  tempPath?: string
+  completed: boolean
+  videoId?: string
+  createdAt: string
+  updatedAt: string
+  expiresAt: string
+}
+
 // Video categories for training system
 export type VideoCategory = 
   | 'flight-basics' 
@@ -119,8 +186,87 @@ export interface UploadProgress {
   file: File
   type: 'video' | 'image'
   progress: number
-  status: 'uploading' | 'completed' | 'error'
+  status: 'uploading' | 'processing' | 'completed' | 'error'
   result?: any
+  error?: string
+  uploadSessionId?: string
+  videoId?: string
+  checkStatusUrl?: string
+}
+
+export interface ChunkUploadProgress {
+  chunkIndex: number
+  progress: number
+  status: 'pending' | 'uploading' | 'completed' | 'error'
+}
+
+// Video upload request/response types
+export interface InitUploadRequest {
+  filename: string
+  fileSize: number
+  mimeType: string
+  totalChunks: number
+  title: string
+  description?: string
+  category?: string
+  tags?: string[]
+}
+
+export interface InitUploadResponse {
+  success: boolean
+  data?: {
+    uploadSessionId: string
+    uploadedChunks: number[]
+    expiresAt: string
+  }
+  error?: string
+}
+
+export interface UploadChunkRequest {
+  uploadSessionId: string
+  chunkIndex: number
+  chunk: Blob
+}
+
+export interface UploadChunkResponse {
+  success: boolean
+  data?: {
+    chunkIndex: number
+    uploadedChunks: number[]
+  }
+  error?: string
+}
+
+export interface CompleteUploadRequest {
+  uploadSessionId: string
+}
+
+export interface CompleteUploadResponse {
+  success: boolean
+  message?: string
+  data?: {
+    videoId: string
+    status: VideoProcessStatus
+    checkStatusUrl: string
+  }
+  error?: string
+}
+
+export interface VideoStatusResponse {
+  success: boolean
+  data?: {
+    videoId: string
+    status: VideoProcessStatus
+    progress?: number
+    processError?: string
+    thumbnailUrl?: string
+    hlsPlaylistUrl?: string
+    dashManifestUrl?: string
+    duration?: number
+    createdAt?: string
+    versions?: VideoVersion[]
+  }
+  error?: string
 }
 
 // API Response types

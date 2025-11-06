@@ -1,6 +1,6 @@
 # vidi-coach-web
 
-一个基于 Next.js 14+ 的现代化无人机培训视频管理平台，支持用户认证、视频管理、文件上传等功能。
+一个基于 Next.js 14+ 的现代化无人机培训视频管理平台，支持用户认证、视频上传、视频处理、云存储等功能。
 
 ## 📁 项目结构
 
@@ -14,6 +14,10 @@ Vidi-Coach-Web/
 │   ├── FORGOT_PASSWORD_GUIDE.md # 忘记密码功能指南
 │   ├── GOOGLE_OAUTH_SETUP.md   # Google OAuth 设置指南
 │   ├── LOGIN_MOCK_MODE_GUIDE.md # 登录模拟模式指南
+│   ├── FFMPEG_SETUP_GUIDE.md   # FFmpeg 安装指南
+│   ├── S3_STORAGE_QUICKSTART.md # S3 云存储配置指南
+│   ├── VIDEO_PROCESSING_DEPLOYMENT_GUIDE.md # 视频处理部署指南
+│   ├── PROJECT_STRUCTURE.md    # 项目结构说明
 │   └── README.md               # 详细文档
 ├── 📁 scripts/                 # 脚本文件
 │   ├── docker-compose.yml      # Docker Compose 配置
@@ -87,6 +91,10 @@ npm run dev
 
 - ✅ **用户认证**: 邮箱注册/登录、Google OAuth
 - ✅ **密码重置**: 邮箱验证码重置密码
+- ✅ **视频上传**: 分块上传、断点续传、进度跟踪
+- ✅ **视频处理**: 自动转码（MP4、HLS）、缩略图生成
+- ✅ **云存储**: AWS S3 集成，支持 CDN 加速
+- ✅ **视频播放**: 支持多种格式和分辨率播放
 - ✅ **响应式设计**: 支持多设备适配
 - ✅ **状态管理**: Zustand 全局状态管理
 - ✅ **类型安全**: 完整的 TypeScript 支持
@@ -102,6 +110,8 @@ npm run dev
 - **认证**: NextAuth.js
 - **数据库**: PostgreSQL, Prisma
 - **邮件**: Nodemailer
+- **视频处理**: FFmpeg (fluent-ffmpeg)
+- **云存储**: AWS S3, CloudFront CDN
 - **容器化**: Docker, Docker Compose
 
 ## 📖 文档
@@ -112,6 +122,10 @@ npm run dev
 - [邮件服务设置指南](docs/EMAIL_SETUP_GUIDE.md)
 - [忘记密码功能指南](docs/FORGOT_PASSWORD_GUIDE.md)
 - [Google OAuth 设置指南](docs/GOOGLE_OAUTH_SETUP.md)
+- [FFmpeg 安装指南](docs/FFMPEG_SETUP_GUIDE.md)
+- [S3 云存储配置指南](docs/S3_STORAGE_QUICKSTART.md)
+- [视频处理部署指南](docs/VIDEO_PROCESSING_DEPLOYMENT_GUIDE.md)
+- [项目结构说明](docs/PROJECT_STRUCTURE.md)
 
 ## 🔧 开发工具
 
